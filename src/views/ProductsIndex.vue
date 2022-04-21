@@ -21,14 +21,23 @@ export default {
 </script>
 
 <template>
-  <div class="products-index">
-    <h1>All Products</h1>
+  <!-- <div class="products-index"> -->
+  <div class="home-row">
+    <h1 v-bind:class="className">{{ message }} count: {{ products.length }}</h1>
+    <h1 class="m-3">{{ message }}</h1>
     <div v-for="product in products" v-bind:key="product.id">
-      <h2>{{ product.name }}</h2>
-      <img v-bind:src="product.url" v-bind:alt="product.name" />
-      <p>Name: {{ product.name }}</p>
-      <p>Price: {{ product.price }}</p>
-      <p>Description: {{ product.description }}</p>
+      <div class="card" style="width: 20rem">
+        <h2>{{ product.name }}</h2>
+        <img
+          v-bind:src="product.images[0].url"
+          style="max-width 30px"
+          v-if="product?.images && product?.images[0]?.url"
+          v-bind:alt="product.name"
+        />
+        <p>Name: {{ product.name }}</p>
+        <p>Price: {{ product.price }}</p>
+        <p>Description: {{ product.description }}</p>
+      </div>
     </div>
   </div>
 </template>
